@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="photo/vmt_icon.png">
+    <title>12 Restoran Wajib Kunjung di Bandung</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F0F7F4;
+            color: #1A1A1A;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url(wisata-kuliner-bandung.jpg) center/cover no-repeat;
+            height: 60vh;
+        }
+        
+        .resto-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            border: 1px solid #E0E7FF;
+        }
+        
+        .resto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(36, 123, 160, 0.15);
+        }
+        
+        .food-img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .detail-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .detail-content.active {
+            max-height: 500px;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: #3B82F6;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 50px;
+            font-size: 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        /* Custom color palette */
+        .bg-primary {
+            background-color: #22B573;
+        }
+        
+        .bg-secondary {
+            background-color: #3B82F6;
+        }
+        
+        .text-primary {
+            color: #22B573;
+        }
+        
+        .text-secondary {
+            color: #3B82F6;
+        }
+        
+        .border-primary {
+            border-color: #22B573;
+        }
+        
+        .border-secondary {
+            border-color: #3B82F6;
+        }
+        
+       /* Header container for logo and language switcher */
+        .header-container {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1a1a1ad8;
+            padding: 10px ;
+
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 35px;
+            width: auto;
+        }
+        
+        .language-switcher {
+            background: white;
+            border-radius: 50px;
+            padding: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+        }
+        
+        .language-btn {
+            padding: 8px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .language-btn.active {
+            background-color: #22B573;
+            color: white;
+        }
+
+        /* Adjust hero section to account for fixed header */
+        .hero {
+            padding-top: 80px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #22B573;
+        }
+
+        html {
+        scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Logo and Language Switcher -->
+    <div class="header-container">
+    <div class="logo-container">
+        <img class="logo" src="photo/vmt_logo_white_text.png" alt="Logo Venus Media Teknologi">
+    </div>
+   <ul class="nav-links">
+                <li><a href="#main-content"  data-i18n="header-p1">Deskripsi</a></li>
+                <li><a href="#restaurant list"  data-i18n="header-p2">list restoran</a></li>
+                <li><a href="#Tentang kami"  data-i18n="header-p3">Tentang Kami</a></li>
+               
+            </ul>
+    <div class="language-switcher">
+        <div class="language-btn active" id="id-btn">ID</div>
+        <div class="language-btn" id="en-btn">EN</div>
+    </div>
+</div>
+
+    <!-- Hero Section -->
+    <div class="hero flex items-center justify-center text-center text-white px-4">
+        <div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4" data-i18n="hero-title">12 Restoran Wajib Kunjung di Bandung</h1>
+            <p class="text-xl md:text-2xl" data-i18n="hero-subtitle">Kuliner Legendaris & Hits yang Tidak Boleh Dilewatkan</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+        <!-- Introduction -->
+        <section id="main-content" class="bg-white rounded-xl p-6 mb-12 shadow-md">
+            <h2 class="text-2xl font-bold text-primary mb-4" data-i18n="intro-title">Surga Kuliner di Kota Kembang</h2>
+            <p style="text-align: justify;" 
+            class="mb-4" data-i18n="intro-p1">Bandung dikenal sebagai kota yang selalu menghadirkan ragam kuliner unik dan menggugah selera. Dari jajanan kaki lima yang legendaris hingga restoran modern dengan konsep kekinian, setiap sudut kota ini menawarkan cita rasa khas yang sulit dilupakan. Kuliner tradisional seperti batagor, siomay, dan nasi timbel masih menjadi primadona, sementara inovasi baru seperti dessert kekinian dan street food dengan sentuhan kreatif menambah daya tarik tersendiri. Perpaduan antara rasa autentik, suasana kota yang sejuk, dan kreativitas anak mudanya membuat kuliner Bandung selalu menjadi alasan kuat untuk kembali berkunjung.</p>
+            <p style="text-align: justify;" 
+            class="mb-4" data-i18n="intro-p2">Selain ragam menu yang menggugah selera, kuliner Bandung juga erat kaitannya dengan pengalaman dan suasana. Banyak tempat makan yang menawarkan konsep unik, mulai dari kafe bergaya modern hingga warung sederhana dengan nuansa tradisional yang hangat. Tidak jarang, keindahan alam sekitar Bandung turut melengkapi pengalaman bersantap, seperti menikmati hidangan sambil memandang perbukitan hijau atau suasana kota yang romantis di malam hari. Inilah yang membuat kuliner Bandung tidak hanya soal rasa, tetapi juga tentang cerita, kenangan, dan pengalaman yang tak terlupakan.</p>
+        </section >
+
+        <!-- Restaurant List -->
+        <section id="restaurant list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Restaurant 1 -->
+            <div class="resto-card bg-white">
+                <img src="photo/qB5wl2NtFowImsLM2F9D87gIh8gwheT5ddmpJ6AL.jpg" alt="Eksterior restoran Lela dengan nuansa vintage dan ornamen Sunda klasik" class="food-img">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold text-gray-800">1. Warung Nasi Ibu Imas</h3>
+                        <span class="text-yellow-500 font-bold">★ 4.5</span>
+                    </div>
+                    <div class="my-2">
+                        <span class="tag" data-i18n="tag-authentic">Otentik</span>
+                        <span class="tag" data-i18n="tag-affordable">Murah</span>
+                        <span class="tag" data-i18n="tag-spicy">Pedas</span> 
+                    </div>
+                    <p class="text-gray-600 mb-4" data-i18n="resto1-desc">Untuk pengalaman makan nasi sunda otentik dengan aneka lauk pauk yang legendaris.</p>
+                    <button onclick="toggleDetail('detail1')" class="text-secondary font-semibold hover:underline" data-i18n="view-details">Lihat Detail ▼</button>
+                    <div id="detail1" class="detail-content mt-4">
+                        <p><strong data-i18n="address">Alamat:</strong> <a href="https://share.google/4TRC4wK3xHKgSSlR0" target="_blank" class="hover:underline" data-i18n="resto1-address">di Jl. Balonggede No. 67, Balonggede, Bandung.</a></p>
+                        <p><strong data-i18n="hours">Jam Buka:</strong> <span data-i18n="resto1-hours">07:00 - 23:30</span></p>
+                        <p><strong data-i18n="special-menu">Menu Spesial:</strong> <span data-i18n="resto1-menu">ayam goreng, ayam bakar, jeroan goreng, ikan mas, bakwan jagung dan pepes</span></p>
+                        <p class="mt-2" data-i18n="resto1-detail">Warung Nasi Ibu Imas termasuk salah satu resto khas Sunda yang terkenal di Bandung karena sudah berdiri sejak tahun 1980-an dan cukup legendaris. Baik wisatawan lokal maupun asing pun mengincar menu kulinernya yang otentik.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurant 2 -->
+            <div class="resto-card bg-white">
+                <img src="photo/rm linggarjati 2.jpg" alt="Tampilan interior estetik Kedai Tiga Nyonya dengan dekorasi peranakan yang elegan" class="food-img">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold text-gray-800">2. RM linggarjati</h3>
+                        <span class="text-yellow-500 font-bold">★ 4.2</span>
+                    </div>
+                    <div class="my-2">
+                        <span class="tag" data-i18n="tag-legendary">Legendaris</span>
+                        <span class="tag" data-i18n="tag-vintage">Klasik</span>
+                        <span class="tag" data-i18n="tag-sunda">Masakan Sunda</span>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-i18n="resto2-desc">Rumah Makan Linggarjati sudah berdiri sejak 1950, dengan resep yang turun temurun.</p>
+                    <button onclick="toggleDetail('detail2')" class="text-secondary font-semibold hover:underline" data-i18n="view-details">Lihat Detail ▼</button>
+                    <div id="detail2" class="detail-content mt-4">
+                        <p><strong data-i18n="address">Alamat:</strong> <a href="https://share.google/wz3XnsCxoEkiXJUDw" target="_blank" class="hover:underline" data-i18n="resto2-address">Jl. Balonggede No.1, Balonggede, Kec. Regol, Kota Bandung,</a></p>
+                        <p><strong data-i18n="hours">Jam Buka:</strong> <span data-i18n="resto2-hours">08:00 - 19:00</span></p>
+                        <p><strong data-i18n="special-menu">Menu Spesial:</strong> <span data-i18n="resto2-menu">mie pangsit dan mie ayam, serta jus alpukat.</span></p>
+                        <p class="mt-2" data-i18n="resto2-detail">Pada awalnya, rumah makan ini hanyalah warung sederhana yang menyediakan menu nasi rames. Setelah beberapa waktu berjalan, pemiliknya mengganti dengan menu baru yakni mie yamin dan bakso.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurant 3 -->
+            <div class="resto-card bg-white">
+                <img src="photo/Nasi Bancakan Wassalam Abah Barna 2.jpg" alt="Tampilan depan The Valley dengan konsep kafe di tengah kebun teh" class="food-img">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold text-gray-800">3. Nasi Bancakan Wassalam Abah Barna</h3>
+                        <span class="text-yellow-500 font-bold">★ 4.4</span>
+                    </div>
+                    <div class="my-2">
+                         <span class="tag" data-i18n="tag-traditional">Tradisional</span>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-i18n="resto3-desc">Menawarkan pengalaman makan nasi khas Sunda dengan gaya bancakan.</p>
+                    <button onclick="toggleDetail('detail3')" class="text-secondary font-semibold hover:underline" data-i18n="view-details">Lihat Detail ▼</button>
+                    <div id="detail3" class="detail-content mt-4">
+                        <p><strong data-i18n="address">Alamat:</strong> <a href="https://share.google/YJWwvypDLqRP09OU5" target="_blank" class="hover:underline" data-i18n="resto3-address">Jl. Diponegoro No.25, Citarum, Kec. Bandung Wetan Kota Bandung</a></p>
+                        <p><strong data-i18n="hours">Jam Buka:</strong> <span data-i18n="resto3-hours">10:00 - 21:30</span></p>
+                        <p><strong data-i18n="special-menu">Menu Spesial:</strong> <span data-i18n="resto3-menu">nasi pindang lauk sawah, nasi ayam jerit, nasi tutug oncom</span></p>
+                        <p class="mt-2" data-i18n="resto3-detail">Warung nasi Bancakan memiliki berbagai menu rumahan tradisional dengan suasana warung nasi yang terasa sederhana.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurant 4 -->
+            <div class="resto-card bg-white">
+                <img src="photo/Iga Bakar Mas Giri.jpeg" alt="Tampilan depan The Valley dengan konsep kafe di tengah kebun teh" class="food-img">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold text-gray-800">4. Iga Bakar Mas Giri</h3>
+                        <span class="text-yellow-500 font-bold">★ 4.4</span>
+                    </div>
+                    <div class="my-2">
+                        <span class="tag" data-i18n="tag-smoky">Smokey</span>
+                        <span class="tag" data-i18n="tag-tender">Empuk</span>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-i18n="resto4-desc">Salah satu tempat makan iga bakar enak di Bandung tentu saja Iga Bakar Mas Giri.</p>
+                    <button onclick="toggleDetail('detail4')" class="text-secondary font-semibold hover:underline" data-i18n="view-details">Lihat Detail ▼</button>
+                    <div id="detail4" class="detail-content mt-4">
+                        <p><strong data-i18n="address">Alamat:</strong> <a href="https://share.google/INvqweveNb6SGbCRn" target="_blank" class="hover:underline" data-i18n="resto4-address">Jl. LLRE Martadinata No. 144, Riau</a></p>
+                        <p><strong data-i18n="hours">Jam Buka:</strong> <span data-i18n="resto4-hours">10:00 - 22:30</span></p>
+                        <p><strong data-i18n="special-menu">Menu Spesial:</strong> <span data-i18n="resto4-menu">iga bakar, iga penyet</span></p>
+                        <p class="mt-2" data-i18n="resto4-detail">Kamu bisa pesan Paket Iga Bakar Super buat menikmati sedapnya iga secara komplit. Disajikan bersama sambal ijo, irisan timun, tomat, dan selada bokor, iga bakarnya cukup empuk dengan citarasa manis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurant 5 -->
+            <div class="resto-card bg-white">
+                <img src="photo/Rumah Makan Khas Sunda Cibiuk.jpeg" alt="Tampilan depan The Valley dengan konsep kafe di tengah kebun teh" class="food-img">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold text-gray-800">5. Rumah Makan Khas Sunda Cibiuk</h3>
+                        <span class="text-yellow-500 font-bold">★ 4.5</span>
+                    </div>
+                    <div class="my-2">
+                        <span class="tag" data-i18n="tag-complete">Lengkap</span>
+                        <span class="tag" data-i18n="tag-authentic">Otentik</span>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-i18n="resto5-desc">Pilihan tepat bagi pencinta masakan Sunda dengan aneka hidangan khas daerah.</p>
+                    <button onclick="toggleDetail('detail5')" class="text-secondary font-semibold hover:underline" data-i18n="view-details">Lihat Detail ▼</button>
+                    <div id="detail5" class="detail-content mt-4">
+                        <p><strong data-i18n="address">Alamat:</strong> <a href="https://share.google/hOj3WW2yCkYzyyK9d" target="_blank" class="hover:underline" data-i18n="resto5-address">Jl. Soekarno-Hatta No.508, Batununggal, Kec. Bandung Kidul, Kota Bandung,</a></p>
+                        <p><strong data-i18n="hours">Jam Buka:</strong> <span data-i18n="resto5-hours">09:00 - 21:00</span></p>
+                        <p><strong data-i18n="special-menu">Menu Spesial:</strong> <span data-i18n="resto5-menu">Sop Gurame, Bebek Goreng, Nasi Timbel Komplit, Sop Iga</span></p>
+                        <p class="mt-2" data-i18n="resto5-detail">Salah satu tempat makan yang nyaman, Makanan nya enak. Harga relatif, Pelayanannya oke.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurant 6 -->
+            <div class="resto-card bg-white">
+                <img src="photo/miss bee providore 2.jpg" alt="Tampilan depan The Valley dengan konsep kafe di tengah kebun teh" class="food-img">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold text-gray-800">6. Miss Bee Providore</h3>
+                        <span class="text-yellow-500 font-bold">★ 4.7</span>
+                    </div>
+                    <div class="my-2">
+                        <span class="tag" data-i18n="tag-aesthetic">Estetik</span>
+                        <span class="tag" data-i18n="tag-vintage">Vintage</span>
+                        <span class="tag" data-i18n="tag-relax">Santai</span>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-i18n="resto6-desc">Restoran ramah anak dengan suasana nyaman yang cocok untuk makan bersama keluarga.</p>
+                    <button onclick="toggleDetail('detail6')" class="text-secondary font-semibold hover:underline" data-i18n="view-details">Lihat Detail ▼</button>
+                    <div id="detail6" class="detail-content mt-4">
+                        <p><strong data-i18n="address">Alamat:</strong> <a href="https://share.google/107bguMQxtpNMvcCb" target="_blank" class="hover:underline" data-i18n="resto6-address">Rancabentang No.11A, Ciumbuleuit, Kec. Cidadap, Kota Bandung,</a></p>
+                        <p><strong data-i18n="hours">Jam Buka:</strong> <span data-i18n="resto6-hours">07:00 - 22:00</span></p>
+                        <p><strong data-i18n="special-menu">Menu Spesial:</strong> <span data-i18n="resto6-menu">Nasi Ayam Gedrek Wangi, Azechuan Salt and Pepper Chicken Rice, Grilled Chicken Gochujang</span></p>
+                        <p class="mt-2" data-i18n="resto6-detail">Miss Bee Providore adalah tempat makan di Bandung terbaik yang cocok untuk anak-anak dan keluarga.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurant 7 -->
+            <div class="resto-card bg-white">
+                <img src="photo/batagor kingsley 2.jpg" alt="Tampilan depan The Valley dengan konsep kafe di tengah kebun teh" class="food-img">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold text-gray-800">7. Batagor Kingsley</h3>
+                        <span class="text-yellow-500 font-bold">★ 4.2</span>
+                    </div>
+                    <div class="my-2">
+                        <span class="tag" data-i18n="tag-aesthetic">Estetik</span>
+                        <span class="tag" data-i18n="tag-vintage">Vintage</span>
+                        <span class="tag" data-i18n="tag-relax">Santai</span>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-i18n="resto7-desc">Salah satu tempat makan batagor legendaris yang enak dan terkenal di Bandung.</p>
+                    <button onclick="toggleDetail('detail7')" class="text-secondary font-semibold hover:underline" data-i18n="view-details">Lihat Detail ▼</button>
+                    <div id="detail7" class="detail-content mt-4">
+                        <p><strong data-i18n="address">Alamat:</strong> <a href="https://share.google/VZRbtZpr88GPHXb9p" target="_blank" class="hover:underline" data-i18n="resto7-address">Jl. Veteran No.25, Kb. Pisang, Kec. Sumur Bandung, Kota Bandung</a></p>
+                        <p><strong data-i18n="hours">Jam Buka:</strong> <span data-i18n="resto7-hours">08:00 - 21:00</span></p>
+                        <p><strong data-i18n="special-menu">Menu Spesial:</strong> <span data-i18n="resto7-menu">Batagor, Siomay, Es sekoteng</span></p>
+                        <p class="mt-2" data-i18n="resto7-detail">sejak 1982, Batagor Kingsley perlahan membangun reputasi sebagai salah satu penjaja batagor paling tersohor di Bandung. Ini berkat kualitas dan cita rasanya yang spesial.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurant 8 -->
+            <div class="resto-card bg-white">
+                <img src="photo/Gormeteria.jpg" alt="Tampilan depan The Valley dengan konsep kafe di tengah kebun teh" class="food-img">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold text-gray-800">8. Gormeteria</h3>
+                        <span class="text-yellow-500 font-bold">★ 4.6</span>
+                    </div>
+                    <div class="my-2">
+                        <span class="tag" data-i18n="tag-aesthetic">Estetik</span>
+                        <span class="tag" data-i18n="tag-modern">Modern</span>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-i18n="resto8-desc">Restoran Instagrammable yang menyediakan makanan berat dan aneka cake lezat dengan suasana yang indah.</p>
+                    <button onclick="toggleDetail('detail8')" class="text-secondary font-semibold hover:underline" data-i18n="view-details">Lihat Detail ▼</button>
+                    <div id="detail8" class="detail-content mt-4">
+                        <p><strong data-i18n="address">Alamat:</strong> <a href="https://share.google/Qg0hTGGuG2IZk6fZE" target="_blank" class="hover:underline" data-i18n="resto8-address">Jl. Pasir Kaliki No.176, Pasir Kaliki, Kec. Cicendo, Kota Bandung</a></p>
+                        <p><strong data-i18n="hours">Jam Buka:</strong> <span data-i18n="resto8-hours">07:00 - 22 :00</span></p>
+                        <p><strong data-i18n="special-menu">Menu Spesial:</strong> <span data-i18n="resto8-menu">Nasi Bumbu Bali, Thai Layer Cake, Durian Layer Cake</span></p>
+                        <p class="mt-2" data-i18n="resto8-detail">Salah satu cafe di Bandung yang tempatnya bagus, nyaman dan makanannya juga enak.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurant 9 -->
+            <div class="resto-card bg-white">
+                <img src="photo/Katsunyaka.jpg" alt="Tampilan depan The Valley dengan konsep kafe di tengah kebun teh" class="food-img">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold text-gray-800">9. Katsunyaka</h3>
+                        <span class="text-yellow-500 font-bold">★ 4.8</span>
+                    </div>
+                    <div class="my-2">
+                        <span class="tag" data-i18n="tag-complete">Lengkap</span>
+                        <span class="tag" data-i18n="tag-japanese">Jepang</span>
+                        <span class="tag" data-i18n="tag-affordable">Murah</span>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-i18n="resto9-desc">Restoran Jepang yang populer dengan menu katsu yang gurih dan crunchy, memiliki beberapa cabang di Bandung.</p>
+                    <button onclick="toggleDetail('detail9')" class="text-secondary font-semibold hover:underline" data-i18n="view-details">Lihat Detail ▼</button>
+                    <div id="detail9" class="detail-content mt-4">
+                        <p><strong data-i18n="address">Alamat:</strong> <a href="https://share.google/QIF6KYeTE90WFP23a" target="_blank" class="hover:underline" data-i18n="resto9-address">Jl. Bengawan No.60, Cihapit, Kec. Bandung Wetan, Kota Bandung</a></p>
+                        <p><strong data-i18n="hours">Jam Buka:</strong> <span data-i18n="resto9-hours">10:00 - 22:00</span></p>
+                        <p><strong data-i18n="special-menu">Menu Spesial:</strong> <span data-i18n="resto9-menu">Chicken Katsu Garlic Set, Chicken Curry Rice, Beef Cheese Katsu</span></p>
+                        <p class="mt-2" data-i18n="resto9-detail">Tempatnya asik banget, walau kecil tapi suasananya Jepang banget deh. Selain itu, mereka muter lagu-lagu Jepang yang kekinian.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurant 10 -->
+            <div class="resto-card bg-white">
+                <img src="photo/Keuken Van Elsje.jpg" alt="Tampilan depan The Valley dengan konsep kafe di tengah kebun teh" class="food-img">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold text-gray-800">10. Keuken Van Elsje</h3>
+                        <span class="text-yellow-500 font-bold">★ 4.6</span>
+                    </div>
+                    <div class="my-2">
+                        <span class="tag" data-i18n="tag-european">Eropa</span>
+                        <span class="tag" data-i18n="tag-hidden-gem">Hidden Gem</span>
+                        <span class="tag" data-i18n="tag-vintage">Vintage</span>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-i18n="resto10-desc">Restoran dengan menu dan suasana yang khas, cocok untuk pengalaman kuliner yang berbeda.</p>
+                    <button onclick="toggleDetail('detail10')" class="text-secondary font-semibold hover:underline" data-i18n="view-details">Lihat Detail ▼</button>
+                    <div id="detail10" class="detail-content mt-4">
+                        <p><strong data-i18n="address">Alamat:</strong> <a href="https://share.google/fH1LzKMKv2j8wAINd" target="_blank" class="hover:underline" data-i18n="resto10-address">Jl. Buton No.11, Kb. Pisang, Kec. Sumur Bandung, Kota Bandung</a></p>
+                        <p><strong data-i18n="hours">Jam Buka:</strong> <span data-i18n="resto10-hours">11:00 - 15:00, 16:00 - 20:00</span></p>
+                        <p><strong data-i18n="special-menu">Menu Spesial:</strong> <span data-i18n="resto10-menu">Hot Beef Stew, Elsje Rissole, Klassieke Stamppot</span></p>
+                        <p class="mt-2" data-i18n="resto10-detail">Sejatinya Keuken van Elsje baru buka pada 2016. Namun, restoran Belanda di Bandung ini menggunakan resep warisan keluarga yang pernah dibuat di restoran keluarga pertama mereka pada tahun 1920.</p>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Restaurant 11 -->
+            <div class="resto-card bg-white">
+                <img src="photo/bmb burger.jpg" alt="Tampilan depan The Valley dengan konsep kafe di tengah kebun teh" class="food-img">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold text-gray-800">11. BBQ Mountain Boys Burger</h3>
+                        <span class="text-yellow-500 font-bold">★ 4.6</span>
+                    </div>
+                    <div class="my-2">
+                        <span class="tag" data-i18n="tag-smoky">Smokey</span>
+                        <span class="tag" data-i18n="tag-unique">Khas</span>
+                        <span class="tag" data-i18n="tag-crowded">Ramai</span>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-i18n="resto11-desc">Burger di sini digadang-gadang sebagai burger terenak yang ada di Bandung.</p>
+                    <button onclick="toggleDetail('detail11')" class="text-secondary font-semibold hover:underline" data-i18n="view-details">Lihat Detail ▼</button>
+                    <div id="detail11" class="detail-content mt-4">
+                        <p><strong data-i18n="address">Alamat:</strong> <a href="https://share.google/I13Y87Wp9WMdQFlj3" target="_blank" class="hover:underline" data-i18n="resto11-address">Paskal Hyper Square, The Tripark, Kecamatan, Kec. Andir, Kota Bandung</a></p>
+                        <p><strong data-i18n="hours">Jam Buka:</strong> <span data-i18n="resto11-hours">10:00 - 20:30</span></p>
+                        <p><strong data-i18n="special-menu">Menu Spesial:</strong> <span data-i18n="resto11-menu">BMB Cabin Style, Nashville Chicken Wings, BMB Cheese Fries</span></p>
+                        <p class="mt-2" data-i18n="resto11-detail">BMB Burger Paskal merupakan destinasi burger artisan yang layak dicoba di Bandung. Kombinasi konsep unik, kualitas burger, dan resep-racikan homemade membuat pengalaman makan di sini istimewa.</p>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Restaurant 12 -->
+            <div class="resto-card bg-white">
+                <img src="photo/bakmi tjokin.jpeg" alt="Tampilan depan The Valley dengan konsep kafe di tengah kebun teh" class="food-img">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold text-gray-800">12. Bakmi Tjo Kin</h3>
+                        <span class="text-yellow-500 font-bold">★ 4.6</span>
+                    </div>
+                    <div class="my-2">
+                        <span class="tag" data-i18n="tag-aesthetic">Estetik</span>
+                        <span class="tag" data-i18n="tag-spicy">Pedas</span>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-i18n="resto12-desc">Bakmie Tjo Kin adalah warung bakmi yang terkenal dengan kombinasi cita rasa autentik dan atmosfer jadul yang otentik.</p>
+                    <button onclick="toggleDetail('detail12')" class="text-secondary font-semibold hover:underline" data-i18n="view-details">Lihat Detail ▼</button>
+                    <div id="detail12" class="detail-content mt-4">
+                        <p><strong data-i18n="address">Alamat:</strong> <a href="https://share.google/imDpcYYhtIm6DqaRI" target="_blank" class="hover:underline" data-i18n="resto12-address">Jl. Cihapit No.18, Cihapit, Kec. Bandung Wetan, Kota Bandung,</a></p>
+                        <p><strong data-i18n="hours">Jam Buka:</strong> <span data-i18n="resto12-hours">08:00 - 21:00</span></p>
+                        <p><strong data-i18n="special-menu">Menu Spesial:</strong> <span data-i18n="resto12-menu">Yamien Manis Ayam, Swikiaw, Bakso goreng</span></p>
+                        <p class="mt-2" data-i18n="resto12-detail">Bakmi Tjokin menghadirkan atmosfer Tionghoa jadul yang keren, dengan ornamen antik seperti poster klasik dan dekorasi retro yang bikin nostalgia ke era 1950-an. Suasana kontemporer bertemu vintage terasa kuat dan menarik perhatian banyak pengunjung.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Showing 12 out of 12 restaurants in this template -->
+        </section >
+
+        <!-- Additional Info -->
+        <div class="bg-blue-50 rounded-xl p-6 mt-12 shadow-inner border border-blue-100">
+            <h2 class="text-xl font-bold text-primary mb-4" data-i18n="tips-title">Tips Berwisata Kuliner di Bandung</h2>
+            <ul class="list-disc pl-5 space-y-2">
+                <li data-i18n="tip1">Cek jam buka & review terbaru → pastikan tempat benar-benar buka dan kualitasnya masih oke.</li>
+                <li data-i18n="tip2">Datang lebih awal → hindari antre panjang dengan datang sebelum jam ramai.</li>
+                <li data-i18n="tip3">Pesan menu andalan → nikmati hidangan khas yang jadi favorit pengunjung.</li>
+                <li data-i18n="tip4">Siapkan uang tunai kecil → memudahkan bayar di tempat yang belum terima cashless.</li>
+                <li data-i18n="tip5">Nikmati suasana sekitar → eksplor area sekitar untuk pengalaman kuliner yang lebih lengkap.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-green-600 text-white pt-12 pb-6 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Kolom 1: About Us -->
+                <section id="Tentang kami">
+                    <h3 class="text-xl font-bold mb-4 pb-2 border-b-2 border-green-500" data-i18n="footer-visit">Visit Us</h3>
+                    <p class="mb-4" data-i18n="footer-about">Venus Media Teknologi adalah perusahaan teknologi informasi yang berfokus pada pengembangan perangkat lunak berbasis web dan aplikasi seluler.</p>
+                    <a href="https://vmt.co.id/#service-page" target="_blank" class="inline-block bg-white text-green-600 px-4 py-2 rounded-full font-semibold mt-2 hover:bg-gray-100 transition duration-300" data-i18n="footer-visit-site">
+                        Kunjungi Website
+                    </a>
+                </section>
+                
+                <!-- Kolom 2: Social Media -->
+                <div class="footer-section">
+                <h3  class="text-xl font-bold mb-4 pb-2 border-b-2 border-green-500" data-i18n="footer-links">Temukan Artikel Kami Yang Lain</h3>
+                <p class="mb-2 flex items-center hover:underline">
+                    <a href="#" target="_blank" data-i18n="footer-home">itinerary kota bandung </a>
+                </p>
+                <p class="mb-2 flex items-center hover:underline">
+                    <a href="#" target="_blank" data-i18n="footer-packages">Tempat wisata kota bandung</a>
+                </p>
+            </div>
+                
+                <!-- Kolom 3: Contact & Newsletter -->
+                <section id="kontak">
+                    <h3 class="text-xl font-bold mb-4 pb-2 border-b-2 border-green-500" data-i18n="footer-contact">Kontak</h3>
+                    <p class="mb-2 flex items-center">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <a href="mailto: office@vmt.co.id" class="hover:text-green-200 hover:underline">office@vmt.co.id</a>
+                    </p>
+                    <p class="mb-6 flex items-center">
+                        <i class="fas fa-user mr-2"></i>
+                        <span data-i18n="footer-contact-person">Contact Person: 081321914119<span>
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/vmt.co.id?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="text-2xl hover:text-green-200 transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/vmt.co.id/?locale=id_ID" target="_blank" class="text-2xl hover:text-green-200 transition-colors duration-300">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/venus-media-teknologi/?originalSubdomain=id" target="_blank" class="text-2xl hover:text-green-200 transition-colors duration-300">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+               </section>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-green-500 pt-6 text-center">
+                <p data-i18n="footer-copyright">&copy; 2023 Panduan Kuliner Bandung. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data for translations
+        const translations = {
+            'id': {
+
+                //header 
+                'header-p1': 'Deskripsi',
+                 'header-p2': 'List Restoran',
+                'header-p3': 'Tentang Kami',
+                'header-p4': 'Kontak',
+
+                // Hero section
+                'hero-title': '12 Restoran Wajib Kunjung di Bandung',
+                'hero-subtitle': 'Kuliner Legendaris & Hits yang Tidak Boleh Dilewatkan',
+                
+                // Introduction
+                'intro-title': 'Surga Kuliner di Kota Kembang',
+                'intro-p1': 'Bandung dikenal sebagai kota yang selalu menghadirkan ragam kuliner unik dan menggugah selera. Dari jajanan kaki lima yang legendaris hingga restoran modern dengan konsep kekinian, setiap sudut kota ini menawarkan cita rasa khas yang sulit dilupakan. Kuliner tradisional seperti batagor, siomay, dan nasi timbel masih menjadi primadona, sementara inovasi baru seperti dessert kekinian dan street food dengan sentuhan kreatif menambah daya tarik tersendiri. Perpaduan antara rasa autentik, suasana kota yang sejuk, dan kreativitas anak mudanya membuat kuliner Bandung selalu menjadi alasan kuat untuk kembali berkunjung.',
+                'intro-p2': 'Selain ragam menu yang menggugah selera, kuliner Bandung juga erat kaitannya dengan pengalaman dan suasana. Banyak tempat makan yang menawarkan konsep unik, mulai dari kafe bergaya modern hingga warung sederhana dengan nuansa tradisional yang hangat. Tidak jarang, keindahan alam sekitar Bandung turut melengkapi pengalaman bersantap, seperti menikmati hidangan sambil memandang perbukitan hijau atau suasana kota yang romantis di malam hari. Inilah yang membuat kuliner Bandung tidak hanya soal rasa, tetapi juga tentang cerita, kenangan, dan pengalaman yang tak terlupakan.',
+                
+                // Tags
+                "tag-spicy": "Pedas",
+                "tag-sunda": "Masakan Sunda",
+                "tag-traditional": "Tradisional",
+                "tag-tender": "Empuk",
+                "tag-authentic": "Otentik",
+                "tag-aesthetic": "Estetik",
+                "tag-vintage": "Vintage",
+                "tag-legendary": "Legendaris",
+                "tag-savory": "Gurih",
+                "tag-modern": "Modern",
+                "tag-japanese": "Jepang",
+                "tag-affordable": "Murah",
+                "tag-european": "Eropa",
+                "tag-hidden-gem": "Hidden Gem",
+                "tag-smoky": "Smokey",
+                "tag-crowded": "Ramai",
+            
+                // Common labels
+                'view-details': 'Lihat Detail ▼',
+                'address': 'Alamat:',
+                'hours': 'Jam Buka:',
+                'special-menu': 'Menu Spesial:',
+                
+                // Restaurant descriptions
+                'resto1-desc': 'Untuk pengalaman makan nasi sunda otentik dengan aneka lauk pauk yang legendaris.',
+                'resto1-address': 'di Jl. Balonggede No. 67, Balonggede, Bandung.',
+                'resto1-hours': '07:00 - 23:30',
+                'resto1-menu': 'ayam goreng, ayam bakar, jeroan goreng, ikan mas, bakwan jagung dan pepes',
+                'resto1-detail': 'Warung Nasi Ibu Imas termasuk salah satu resto khas Sunda yang terkenal di Bandung karena sudah berdiri sejak tahun 1980-an dan cukup legendaris. Baik wisatawan lokal maupun asing pun mengincar menu kulinernya yang otentik.',
+                
+                'resto2-desc': 'Rumah Makan Linggarjati sudah berdiri sejak 1950, dengan resep yang turun temurun.',
+                'resto2-address': 'Jl. Balonggede No.1, Balonggede, Kec. Regol, Kota Bandung,',
+                'resto2-hours': '08:00 - 19:00',
+                'resto2-menu': 'mie pangsit dan mie ayam, serta jus alpukat.',
+                'resto2-detail': 'Pada awalnya, rumah makan ini hanyalah warung sederhana yang menyediakan menu nasi rames. Setelah beberapa waktu berjalan, pemiliknya mengganti dengan menu baru yakni mie yamin dan bakso.',
+                
+                'resto3-desc': 'Menawarkan pengalaman makan nasi khas Sunda dengan gaya bancakan.',
+                'resto3-address': 'Jl. Diponegoro No.25, Citarum, Kec. Bandung Wetan Kota Bandung',
+                'resto3-hours': '10:00 - 21:30',
+                'resto3-menu': 'nasi pindang lauk sawah, nasi ayam jerit, nasi tutug oncom',
+                'resto3-detail': 'Warung nasi Bancakan memiliki berbagai menu rumahan tradisional dengan suasana warung nasi yang terasa sederhana.',
+            
+                'resto4-desc': 'Salah satu tempat makan iga bakar enak di Bandung tentu saja Iga Bakar Mas Giri.',
+                'resto4-address': 'Jl. LLRE Martadinata No. 144, Riau',
+                'resto4-hours': '10:00 - 22:30',
+                'resto4-menu': 'iga bakar, iga penyet',
+                'resto4-detail': 'Kamu bisa pesan Paket Iga Bakar Super buat menikmati sedapnya iga secara komplit. Disajikan bersama sambal ijo, irisan timun, tomat, dan selada bokor, iga bakarnya cukup empuk dengan citarasa manis.',
+                
+                'resto5-desc': 'Pilihan tepat bagi pencinta masakan Sunda dengan aneka hidangan khas daerah.',
+                'resto5-address': 'Jl. Soekarno-Hatta No.508, Batununggal, Kec. Bandung Kidul, Kota Bandung,',
+                'resto5-hours': '09:00 - 21:00',
+                'resto5-menu': 'Sop Gurame, Bebek Goreng, Nasi Timbel Komplit, Sop Iga',
+                'resto5-detail': 'Salah satu tempat makan yang nyaman, Makanan nya enak. Harga relatif, Pelayanannya oke.',
+                
+                'resto6-desc': 'Restoran ramah anak dengan suasana nyaman yang cocok untuk makan bersama keluarga.',
+                'resto6-address': 'Rancabentang No.11A, Ciumbuleuit, Kec. Cidadap, Kota Bandung,',
+                'resto6-hours': '07:00 - 22:00',
+                'resto6-menu': 'Nasi Ayam Gedrek Wangi, Azechuan Salt and Pepper Chicken Rice, Grilled Chicken Gochujang',
+                'resto6-detail': 'Miss Bee Providore adalah tempat makan di Bandung terbaik yang cocok untuk anak-anak dan keluarga.',
+                
+                'resto7-desc': 'Salah satu tempat makan batagor legendaris yang enak dan terkenal di Bandung.',
+                'resto7-address': 'Jl. Veteran No.25, Kb. Pisang, Kec. Sumur Bandung, Kota Bandung',
+                'resto7-hours': '08:00 - 21:00',
+                'resto7-menu': 'Batagor, Siomay, Es sekoteng',
+                'resto7-detail': 'sejak 1982, Batagor Kingsley perlahan membangun reputasi sebagai salah satu penjaja batagor paling tersohor di Bandung. Ini berkat kualitas dan cita rasanya yang spesial.',
+                
+                'resto8-desc': 'Restoran Instagrammable yang menyediakan makanan berat dan aneka cake lezat dengan suasana yang indah.',
+                'resto8-address': 'Jl. Pasir Kaliki No.176, Pasir Kaliki, Kec. Cicendo, Kota Bandung',
+                'resto8-hours': '07:00 - 22:00',
+                'resto8-menu': 'Nasi Bumbu Bali, Thai Layer Cake, Durian Layer Cake',
+                'resto8-detail': 'Salah satu cafe di Bandung yang tempatnya bagus, nyaman dan makanannya juga enak.',
+                
+                'resto9-desc': 'Restoran Jepang yang populer dengan menu katsu yang gurih dan crunchy, memiliki beberapa cabang di Bandung.',
+                'resto9-address': 'Jl. Bengawan No.60, Cihapit, Kec. Bandung Wetan, Kota Bandung',
+                'resto9-hours': '10:00 - 22:00',
+                'resto9-menu': 'Chicken Katsu Garlic Set, Chicken Curry Rice, Beef Cheese Katsu',
+                'resto9-detail': 'Tempatnya asik banget, walau kecil tapi suasananya Jepang banget deh. Selain itu, mereka muter lagu-lagu Jepang yang kekinian.',
+                
+                'resto10-desc': 'Restoran dengan menu dan suasana yang khas, cocok untuk pengalaman kuliner yang berbeda.',
+                'resto10-address': 'Jl. Buton No.11, Kb. Pisang, Kec. Sumur Bandung, Kota Bandung',
+                'resto10-hours': '11:00 - 15:00, 16:00 - 20:00',
+                'resto10-menu': 'Hot Beef Stew, Elsje Rissole, Klassieke Stamppot',
+                'resto10-detail': 'Sejatinya Keuken van Elsje baru buka pada 2016. Namun, restoran Belanda di Bandung ini menggunakan resep warisan keluarga yang pernah dibuat di restoran keluarga pertama mereka pada tahun 1920.',
+                
+                'resto11-desc': 'Burger di sini digadang-gadang sebagai burger terenak yang ada di Bandung.',
+                'resto11-address': 'Paskal Hyper Square, The Tripark, Kecamatan, Kec. Andir, Kota Bandung',
+                'resto11-hours': '10:00 - 20:30',
+                'resto11-menu': 'BMB Cabin Style, Nashville Chicken Wings, BMB Cheese Fries',
+                'resto11-detail': 'BMB Burger Paskal merupakan destinasi burger artisan yang layak dicoba di Bandung. Kombinasi konsep unik, kualitas burger, dan resep-racikan homemade membuat pengalaman makan di sini istimewa.',
+                
+                'resto12-desc': 'Bakmie Tjo Kin adalah warung bakmi yang terkenal dengan kombinasi cita rasa autentik dan atmosfer jadul yang otentik.',
+                'resto12-address': 'Jl. Cihapit No.18, Cihapit, Kec. Bandung Wetan, Kota Bandung,',
+                'resto12-hours': '08:00 - 21:00',
+                'resto12-menu': 'Yamien Manis Ayam, Swikiaw, Bakso goreng',
+                'resto12-detail': 'Bakmi Tjokin menghadirkan atmosfer Tionghoa jadul yang keren, dengan ornamen antik seperti poster klasik dan dekorasi retro yang bikin nostalgia ke era 1950-an. Suasana kontemporer bertemu vintage terasa kuat dan menarik perhatian banyak pengunjung.',
+                
+                // Tips section
+                'tips-title': 'Tips Berwisata Kuliner di Bandung',
+                'tip1': 'Cek jam buka & review terbaru → pastikan tempat benar-benar buka dan kualitasnya masih oke.',
+                'tip2': 'Datang lebih awal → hindari antre panjang dengan datang sebelum jam ramai.',
+                'tip3': 'Pesan menu andalan → nikmati hidangan khas yang jadi favorit pengunjung.',
+                'tip4': 'Siapkan uang tunai kecil → memudahkan bayar di tempat yang belum terima cashless.',
+                'tip5': 'Nikmati suasana sekitar → eksplor area sekitar untuk pengalaman kuliner yang lebih lengkap.',
+                
+                // Footer
+                'footer-visit': 'Visit Us',
+                'footer-about': 'Venus Media Teknologi adalah perusahaan teknologi informasi yang berfokus pada pengembangan perangkat lunak berbasis web dan aplikasi seluler.',
+                'footer-visit-site': 'Kunjungi Website',
+                'footer-links': 'Temukan Artikel Kami Yang Lain',
+                'footer-social-desc': 'Ikuti kami untuk update restoran terbaru dan promo menarik',
+                'footer-contact': 'Kontak',
+                'footer-contact-person': 'Contact Person:  081321914119',
+                'footer-copyright': '&copy; 2025 Panduan Kuliner Bandung. All rights reserved.'
+            },
+            'en': {
+
+                 //header 
+                'header-p1': 'Description',
+                'header-p2': 'Restaurant List',
+                'header-p3': 'About Us',
+                'header-p4': 'Contact Person',
+
+                // Hero section
+                'hero-title': '12 Must-Visit Restaurants in Bandung',
+                'hero-subtitle': 'Legendary & Trendy Culinary Spots You Shouldn\'t Miss',
+                
+                // Introduction
+                'intro-title': 'Culinary Paradise in the City of Flowers',
+                'intro-p1': 'Bandung is known as a city that always presents a variety of unique and appetizing culinary delights. From legendary street food to modern restaurants with contemporary concepts, every corner of this city offers distinctive flavors that are hard to forget. Traditional dishes like batagor, siomay, and nasi timbel remain favorites, while new innovations like trendy desserts and creative street food add their own appeal. The combination of authentic flavors, the city\'s cool atmosphere, and the creativity of its youth make Bandung\'s culinary scene a strong reason to visit again.',
+                'intro-p2': 'Beyond the variety of appetizing menus, Bandung\'s culinary scene is also closely related to experience and atmosphere. Many eateries offer unique concepts, ranging from modern-style cafes to simple stalls with warm traditional vibes. Often, the natural beauty around Bandung complements the dining experience, such as enjoying meals while overlooking green hills or the city\'s romantic atmosphere at night. This is what makes Bandung\'s culinary scene not just about taste, but also about stories, memories, and unforgettable experiences.',
+                
+                // Tags
+                "tag-spicy": "Spicy",
+                "tag-sunda": "Sundanese Cuisine",
+                "tag-traditional": "Traditional",
+                "tag-tender": "Tender",
+                "tag-authentic": "Authentic",
+                "tag-aesthetic": "Aesthetic",
+                "tag-vintage": "Vintage",
+                "tag-legendary": "Legendary",
+                "tag-savory": "Savory",
+                "tag-modern": "Modern",
+                "tag-japanese": "Japanese",
+                "tag-affordable": "Affordable",
+                "tag-european": "European",
+                "tag-hidden-gem": "Hidden Gem",
+                "tag-smoky": "Smoky",
+                "tag-crowded": "Crowded",
+
+                // Common labels
+                'view-details': 'View Details ▼',
+                'address': 'Address:',
+                'hours': 'Opening Hours:',
+                'special-menu': 'Special Menu:',
+                
+                // Restaurant descriptions
+                'resto1-desc': 'For an authentic Sundanese rice dining experience with legendary side dishes.',
+                'resto1-address': 'Jl. Balonggede No. 67, Balonggede, Bandung.',
+                'resto1-hours': '07:00 - 23:30',
+                'resto1-menu': 'fried chicken, grilled chicken, fried offal, goldfish, corn fritters and pepes',
+                'resto1-detail': 'Warung Nasi Ibu Imas is one of the famous Sundanese restaurants in Bandung that has been established since the 1980s and is quite legendary. Both local and foreign tourists seek out its authentic culinary menu.',
+
+                'resto2-desc': 'Rumah Makan Linggarjati has been established since 1950, with recipes passed down through generations.',
+                'resto2-address': 'Jl. Balonggede No.1, Balonggede, Kec. Regol, Kota Bandung,',
+                'resto2-hours': '08:00 - 19:00',
+                'resto2-menu': 'wonton noodles and chicken noodles, as well as avocado juice.',
+                'resto2-detail': 'Initially, this restaurant was just a simple stall serving nasi rames. After some time, the owner replaced it with a new menu, namely yamin noodles and meatballs.',
+                
+                'resto3-desc': 'Offers a Sundanese rice dining experience with bancakan style.',
+                'resto3-address': 'Jl. Diponegoro No.25, Citarum, Kec. Bandung Wetan Kota Bandung',
+                'resto3-hours': '10:00 - 21:30',
+                'resto3-menu': 'pindang rice with sawah fish, ayam jerit rice, tutug oncom rice',
+                'resto3-detail': 'Bancakan rice stall offers various traditional home-style menus with a simple warung atmosphere.',
+               
+                'resto4-desc': 'One of the best grilled ribs places in Bandung is definitely Iga Bakar Mas Giri.',
+                'resto4-address': 'Jl. LLRE Martadinata No. 144, Riau',
+                'resto4-hours': '10:00 - 22:30',
+                'resto4-menu': 'grilled ribs, smashed ribs',
+                'resto4-detail': 'You can order the Super Grilled Ribs Package to enjoy the complete delicious ribs. Served with green chili sambal, cucumber slices, tomatoes, and bokor lettuce, the ribs are tender with a sweet taste.',
+                
+                'resto5-desc': 'The right choice for Sundanese cuisine lovers with a variety of regional specialties.',
+                'resto5-address': 'Jl. Soekarno-Hatta No.508, Batununggal, Kec. Bandung Kidul, Kota Bandung,',
+                'resto5-hours': '09:00 - 21:00',
+                'resto5-menu': 'Gurame Soup, Fried Duck, Complete Timbel Rice, Rib Soup',
+                'resto5-detail': 'A comfortable place to eat, the food is delicious. Prices are reasonable, and the service is good.',
+
+                'resto6-desc': 'Child-friendly restaurant with a comfortable atmosphere suitable for family dining.',
+                'resto6-address': 'Rancabentang No.11A, Ciumbuleuit, Kec. Cidadap, Kota Bandung,',
+                'resto6-hours': '07:00 - 22:00',
+                'resto6-menu': 'Fragrant Gedrek Chicken Rice, Azechuan Salt and Pepper Chicken Rice, Grilled Chicken Gochujang',
+                'resto6-detail': 'Miss Bee Providore is one of the best dining places in Bandung suitable for children and families.',
+
+                'resto7-desc': 'One of the legendary and delicious batagor places famous in Bandung.',
+                'resto7-address': 'Jl. Veteran No.25, Kb. Pisang, Kec. Sumur Bandung, Kota Bandung',
+                'resto7-hours': '08:00 - 21:00',
+                'resto7-menu': 'Batagor, Siomay, Sekoteng Ice',
+                'resto7-detail': 'Since 1982, Batagor Kingsley has gradually built a reputation as one of the most renowned batagor vendors in Bandung, thanks to its quality and special taste.',
+
+                'resto8-desc': 'Instagrammable restaurant offering hearty meals and a variety of delicious cakes with a beautiful atmosphere.',
+                'resto8-address': 'Jl. Pasir Kaliki No.176, Pasir Kaliki, Kec. Cicendo, Kota Bandung',
+                'resto8-hours': '07:00 - 22:00',
+                'resto8-menu': 'Bali Spiced Rice, Thai Layer Cake, Durian Layer Cake',
+                'resto8-detail': 'One of the cafes in Bandung with a nice place, comfortable and delicious food.',
+
+                'resto9-desc': 'Popular Japanese restaurant known for its savory and crunchy katsu menu, with several branches in Bandung.',
+                'resto9-address': 'Jl. Bengawan No.60, Cihapit, Kec. Bandung Wetan, Kota Bandung',
+                'resto9-hours': '10:00 - 22:00',
+                'resto9-menu': 'Chicken Katsu Garlic Set, Chicken Curry Rice, Beef Cheese Katsu',
+                'resto9-detail': 'The place is very nice, although small but the atmosphere is very Japanese. They also play trendy Japanese songs.',
+
+                'resto10-desc': 'Restaurant with distinctive menu and atmosphere, suitable for a different culinary experience.',
+                'resto10-address': 'Jl. Buton No.11, Kb. Pisang, Kec. Sumur Bandung, Kota Bandung',
+                'resto10-hours': '11:00 - 15:00, 16:00 - 20:00',
+                'resto10-menu': 'Hot Beef Stew, Elsje Rissole, Klassieke Stamppot',
+                'resto10-detail': 'Keuken van Elsje officially opened in 2016. However, this Dutch restaurant in Bandung uses family recipes originally made in their first family restaurant in 1920.',
+
+                'resto11-desc': 'The burgers here are touted as the best burgers in Bandung.',
+                'resto11-address': 'Paskal Hyper Square, The Tripark, Kecamatan, Kec. Andir, Kota Bandung',
+                'resto11-hours': '10:00 - 20:30',
+                'resto11-menu': 'BMB Cabin Style, Nashville Chicken Wings, BMB Cheese Fries',
+                'resto11-detail': 'BMB Burger Paskal is an artisan burger destination worth trying in Bandung. The combination of unique concept, burger quality, and homemade recipes makes dining here special.',
+
+                'resto12-desc': 'Bakmie Tjo Kin is a noodle stall famous for its authentic taste and vintage atmosphere.',
+                'resto12-address': 'Jl. Cihapit No.18, Cihapit, Kec. Bandung Wetan, Kota Bandung,',
+                'resto12-hours': '08:00 - 21:00',
+                'resto12-menu': 'Sweet Yamien Chicken, Swikiaw, Fried Meatballs',
+                'resto12-detail': 'Bakmi Tjokin presents a cool old Chinese atmosphere, with antique ornaments like classic posters and retro decorations that evoke nostalgia to the 1950s. The contemporary meets vintage vibe strongly attracts many visitors.',
+                
+                // Tips section
+                'tips-title': 'Tips for Culinary Tourism in Bandung',
+                'tip1': 'Check opening hours & latest reviews → make sure the place is really open and the quality is still good.',
+                'tip2': 'Come early → avoid long queues by coming before peak hours.',
+                'tip3': 'Order signature dishes → enjoy the specialty dishes that are favorites of visitors.',
+                'tip4': 'Prepare small cash → makes it easier to pay at places that don\'t accept cashless payments yet.',
+                'tip5': 'Enjoy the surroundings → explore the surrounding area for a more complete culinary experience.',
+                
+                // Footer
+                'footer-visit': 'Visit Us',
+                'footer-about': 'Venus Media Teknologi is an information technology company focused on developing web-based software and mobile applications.',
+                'footer-visit-site': 'Visit Website',
+                'footer-links': 'Discover Our Other Articles',
+                'footer-social-desc': 'Follow us for the latest restaurant updates and exciting promotions',
+                'footer-contact': 'Contact',
+                'footer-contact-person': 'Contact Person:  081321914119',
+                'footer-copyright': '&copy; 2025 Bandung Culinary Guide. All rights reserved.'
+            }
+        };
+
+        // Function to toggle details
+        function toggleDetail(id) {
+            const detail = document.getElementById(id);
+            detail.classList.toggle('active');
+            
+            // Update button text based on language
+            const button = detail.previousElementSibling;
+            const isIndonesian = document.getElementById('id-btn').classList.contains('active');
+            if (detail.classList.contains('active')) {
+                button.innerHTML = isIndonesian ? 'Sembunyikan Detail ▲' : 'Hide Details ▲';
+            } else {
+                button.innerHTML = isIndonesian ? 'Lihat Detail ▼' : 'View Details ▼';
+            }
+        }
+
+        // Function to change language
+        function changeLanguage(lang) {
+            // Update active button
+            document.getElementById('id-btn').classList.toggle('active', lang === 'id');
+            document.getElementById('en-btn').classList.toggle('active', lang === 'en');
+            
+            // Get all elements with data-i18n attribute
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            // Update text content
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (element.hasAttribute('placeholder')) {
+                        element.setAttribute('placeholder', translations[lang][key]);
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update detail buttons text
+            const details = document.querySelectorAll('.detail-content');
+            details.forEach(detail => {
+                const button = detail.previousElementSibling;
+                if (detail.classList.contains('active')) {
+                    button.innerHTML = lang === 'id' ? 'Sembunyikan Detail ▲' : 'Hide Details ▲';
+                } else {
+                    button.innerHTML = lang === 'id' ? 'Lihat Detail ▼' : 'View Details ▼';
+                }
+            });
+            
+            // Update page language attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Initialize language buttons
+        document.getElementById('id-btn').addEventListener('click', () => changeLanguage('id'));
+        document.getElementById('en-btn').addEventListener('click', () => changeLanguage('en'));
+
+        // Set initial language to Indonesian
+        changeLanguage('id');
+    </script>
+</body>
+</html>
